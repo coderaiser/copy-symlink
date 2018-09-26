@@ -1,0 +1,43 @@
+{
+  "name": "copy-symlink",
+  "version": "1.0.0",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "copy symlink, because fs.copyFile can't",
+  "homepage": "http://github.com/coderaiser/copy-symlink",
+  "keywords": [
+    "copy",
+    "symlink"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coderaiser/copy-symlink.git"
+  },
+  "scripts": {
+    "test": "tape test/*.js",
+    "lint": "redrun lint:*",
+    "lint:lib": "eslint lib",
+    "lint:test": "eslint test -c .eslintrc.test",
+    "watch:test": "npm run watcher -- \"npm test\"",
+    "watcher": "nodemon -w lib -w test -x",
+    "coverage": "nyc npm test",
+    "report": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "dependencies": {},
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "lib/copy-symlink.js",
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "eslint": "^5.6.0",
+    "eslint-plugin-node": "^7.0.1",
+    "mock-require": "^3.0.2",
+    "nodemon": "^1.11.0",
+    "nyc": "^13.0.1",
+    "redrun": "^6.0.0",
+    "rimraf": "^2.6.2",
+    "tape": "^4.2.0",
+    "try-to-catch": "^1.0.2"
+  }
+}
