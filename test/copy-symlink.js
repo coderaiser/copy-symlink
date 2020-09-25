@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const test = require('tape');
+const test = require('supertape');
 const tryToCatch = require('try-to-catch');
 const {reRequire}  = require('mock-require');
 
@@ -14,26 +14,26 @@ test('copy-symlink', async (t) => {
 });
 
 test('copy-symlink: realpath', async (t) => {
-    const {realpath} = fs;
-    fs.realpath = (a, fn) => fn(null, '/hello');
+    const {realpath} = fs.promises;
+    fs.promises.realpath = () => '/hello';
     
     const copySymlink = reRequire('..');
     const [e] = await tryToCatch(copySymlink, '/', '/abc');
     
-    fs.realpath = realpath;
+    fs.promises.realpath = realpath;
     
     t.equal(e.path, '/hello', 'should equal');
     t.end();
 });
 
 test('copy-symlink: symlink', async (t) => {
-    const {symlink} = fs;
-    fs.symlink = (a, b, fn) => fn(Error('hello'));
+    const {symlink} = fs.promises;
+    fs.promises.symlink = () => {throw Error('hello');};
     
     const copySymlink = reRequire('..');
     const [e] = await tryToCatch(copySymlink, '/', '/abc');
     
-    fs.symlink = symlink;
+    fs.promises.symlink = symlink;
     
     t.equal(e.message, 'hello', 'should equal');
     t.end();
