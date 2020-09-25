@@ -1,0 +1,9 @@
+2020.09.25, v2.0.0
+
+feature:
+- (package) nodemon v2.0.4
+- (package) nyc v15.1.0
+- (package) eslint v7.9.0
+- (copy-symlink) drop support of node < 10
+- (package) rimraf v3.0.2
+
