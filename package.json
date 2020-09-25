@@ -30,7 +30,7 @@
   "main": "lib/copy-symlink.js",
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "eslint": "^5.6.0",
+    "eslint": "^7.9.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-putout": "^5.1.1",
     "madrun": "^7.0.4",
